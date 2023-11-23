@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    # runs-on: ubuntu-latest 
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4 
+
+      - name: AWS Authentication.....
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2  # Replace with your AWS region
+  
+      - name: run terraform pre-commit hooks
+        uses: ./terraform
+      - name: initialize Terraform
+        run: terraform init 
+      - name: Plan Terraform
+        run: terraform plan 
+      # - name: apply Terraform
+      #   run: terraform apply -auto-approve
+      # - name: destroy Terraform
+      #   run: terraform destroy -auto-approve
