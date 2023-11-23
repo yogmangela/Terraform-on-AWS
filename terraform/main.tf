@@ -15,7 +15,7 @@ locals {
   }
 
   vm = {
-    instance_type = "ADD INSTANCE TYPE"  # i.e "m5.large" 
+    instance_type = "ADD INSTANCE TYPE" # i.e "m5.large" 
 
     instance_requirements = {
       memory_mib = {
