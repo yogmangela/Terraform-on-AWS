@@ -21,7 +21,7 @@ jobs:
           aws-region: eu-west-2  # Replace with your AWS region
   
       - name: run terraform pre-commit hooks
-        uses: ./terraform
+        uses: ./
       - name: initialize Terraform
         run: terraform init 
       - name: Plan Terraform
